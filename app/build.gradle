@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace 'com.mikirinkode.roomdatabinding'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.mikirinkode.roomdatabinding"
