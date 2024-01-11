@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.mikirinkode.roomdatabinding.R
+import com.mikirinkode.roomdatabinding.model.Todo
 import com.mikirinkode.roomdatabinding.viewmodel.DetailViewModel
 
 
@@ -28,8 +32,16 @@ class CreateFragment : Fragment() {
 
         viewModel =
             ViewModelProvider(this)[DetailViewModel::class.java]
-         val btnAdd = view.findViewById<Button>(R.id.btnAdd)
+        val btnAdd = view.findViewById<Button>(R.id.btnAdd)
         btnAdd.setOnClickListener {
+            val txtTitle = view.findViewById<EditText>(R.id.etTitle)
+            val txtNotes = view.findViewById<EditText>(R.id.etNotes)
+            var todo = Todo(txtTitle.text.toString(), txtNotes.text.toString())
+            val list = listOf(todo)
+            viewModel.addTodo(list)
+
+            Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
+            Navigation.findNavController(it).popBackStack()
         }
 
     }
