@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mikirinkode.roomdatabinding.R
 import com.mikirinkode.roomdatabinding.model.Todo
@@ -25,11 +27,20 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnClick : (Todo) 
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         var checktask = holder.view.findViewById<CheckBox>(R.id.checkTask)
+        var imgEdit = holder.view.findViewById<ImageView>(R.id.imgEdit)
         checktask.text = todoList[position].title
 
-        checktask.setOnCheckedChangeListener { compoundButton, b ->
-            adapterOnClick(todoList[position])
+        checktask.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) {
+                adapterOnClick(todoList[position])
+            }
         }
+
+        imgEdit.setOnClickListener {
+            val action = ListFragmentDirections.actionEditTodo(todoList[position].uuid)
+            Navigation.findNavController(it).navigate(action)
+        }
+
     }
 
 

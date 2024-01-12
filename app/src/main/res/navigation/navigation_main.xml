@@ -13,10 +13,21 @@
         <action
             android:id="@+id/actionCreateTodo"
             app:destination="@id/createFragment" />
+        <action
+            android:id="@+id/actionEditTodo"
+            app:destination="@id/editFragment" />
     </fragment>
     <fragment
         android:id="@+id/createFragment"
         android:name="com.mikirinkode.roomdatabinding.view.CreateFragment"
         android:label="fragment_create"
         tools:layout="@layout/fragment_create" />
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.mikirinkode.roomdatabinding.view.EditFragment"
+        android:label="EditFragment" >
+        <argument
+            android:name="uuid"
+            app:argType="integer" />
+    </fragment>
 </navigation>

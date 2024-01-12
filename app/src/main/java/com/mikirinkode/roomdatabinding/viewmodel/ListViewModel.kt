@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import com.mikirinkode.roomdatabinding.model.Todo
 import com.mikirinkode.roomdatabinding.model.TodoDatabase
+import com.mikirinkode.roomdatabinding.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -21,6 +22,8 @@ class ListViewModel(application: Application): AndroidViewModel(application), Co
 
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
+
+    val db = buildDb(getApplication())
 
     fun refresh() {
         loadingLD.value = true
